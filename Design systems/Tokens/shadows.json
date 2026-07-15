@@ -1,0 +1,171 @@
+{
+  "Shadow Light": {
+    "XS": {
+      "$value": {
+        "color": "#0000000D",
+        "offsetX": "0",
+        "offsetY": "1",
+        "blur": "2",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    },
+    "SM": {
+      "$value": {
+        "color": "#0000000D",
+        "offsetX": "0",
+        "offsetY": "1",
+        "blur": "3",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    },
+    "SM+": {
+      "$value": {
+        "color": "#00000014",
+        "offsetX": "0",
+        "offsetY": "2",
+        "blur": "4",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    },
+    "Card": {
+      "$value": {
+        "color": "#00000014",
+        "offsetX": "0",
+        "offsetY": "2",
+        "blur": "6",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    },
+    "Card Soft": {
+      "$value": {
+        "color": "#0000000F",
+        "offsetX": "0",
+        "offsetY": "2",
+        "blur": "8",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    }
+  },
+  "Shadow Deep": {
+    "MD": {
+      "$value": {
+        "color": "#0000001A",
+        "offsetX": "0",
+        "offsetY": "4",
+        "blur": "6",
+        "spread": "-1"
+      },
+      "$type": "shadow"
+    },
+    "MD Soft": {
+      "$value": [
+        {
+          "color": "#0000000F",
+          "offsetX": "0",
+          "offsetY": "2",
+          "blur": "4",
+          "spread": "-1"
+        },
+        {
+          "color": "#0000001A",
+          "offsetX": "0",
+          "offsetY": "4",
+          "blur": "6",
+          "spread": "-1"
+        }
+      ],
+      "$type": "shadow"
+    },
+    "XL": {
+      "$value": {
+        "color": "#0000002E",
+        "offsetX": "0",
+        "offsetY": "8",
+        "blur": "16",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    },
+    "LG+": {
+      "$value": {
+        "color": "#0000001A",
+        "offsetX": "0",
+        "offsetY": "4",
+        "blur": "15",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    }
+  },
+  "Shadow Accent": {
+    "Hover Card": {
+      "$value": {
+        "color": "#00000026",
+        "offsetX": "0",
+        "offsetY": "8",
+        "blur": "24",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    },
+    "Accent Blue": {
+      "$value": {
+        "color": "#3B82F666",
+        "offsetX": "0",
+        "offsetY": "8",
+        "blur": "20",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    }
+  },
+  "Shadow Modal": {
+    "Floating": {
+      "$value": {
+        "color": "#00000026",
+        "offsetX": "0",
+        "offsetY": "20",
+        "blur": "40",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    },
+    "Modal": {
+      "$value": {
+        "color": "#0000004D",
+        "offsetX": "0",
+        "offsetY": "20",
+        "blur": "60",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    }
+  },
+  "Shadow Glow": {
+    "XL": {
+      "$value": {
+        "color": "#7D46EA66",
+        "offsetX": "0",
+        "offsetY": "12",
+        "blur": "32",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    },
+    "MD": {
+      "$value": {
+        "color": "#7D46EA40",
+        "offsetX": "0",
+        "offsetY": "8",
+        "blur": "24",
+        "spread": "0"
+      },
+      "$type": "shadow"
+    }
+  }
+}

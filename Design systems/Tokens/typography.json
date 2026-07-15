@@ -1,0 +1,486 @@
+{
+  "Font Family": {
+    "base": {
+      "$value": "Poppins",
+      "$type": "fontFamily"
+    },
+    "mono": {
+      "$value": "IBM Plex Mono",
+      "$type": "fontFamily"
+    },
+    "alt": {
+      "$value": "Roboto Flex",
+      "$type": "fontFamily"
+    }
+  },
+  "Font Size": {
+    "9": {
+      "$value": 9,
+      "$type": "dimension"
+    },
+    "10": {
+      "$value": 10,
+      "$type": "dimension"
+    },
+    "11": {
+      "$value": 11,
+      "$type": "dimension"
+    },
+    "12": {
+      "$value": 12,
+      "$type": "dimension"
+    },
+    "13": {
+      "$value": 13,
+      "$type": "dimension"
+    },
+    "14": {
+      "$value": 14,
+      "$type": "dimension"
+    },
+    "15": {
+      "$value": 15,
+      "$type": "dimension"
+    },
+    "16": {
+      "$value": 16,
+      "$type": "dimension"
+    },
+    "17": {
+      "$value": 17,
+      "$type": "dimension"
+    },
+    "18": {
+      "$value": 18,
+      "$type": "dimension"
+    },
+    "20": {
+      "$value": 20,
+      "$type": "dimension"
+    },
+    "24": {
+      "$value": 24,
+      "$type": "dimension"
+    },
+    "30": {
+      "$value": 30,
+      "$type": "dimension"
+    },
+    "48": {
+      "$value": 48,
+      "$type": "dimension"
+    }
+  },
+  "Font Weight": {
+    "Regular": {
+      "$value": 400,
+      "$type": "fontWeight"
+    },
+    "Medium": {
+      "$value": 500,
+      "$type": "fontWeight"
+    },
+    "Semibold": {
+      "$value": 600,
+      "$type": "fontWeight"
+    },
+    "Medium-mono": {
+      "$value": 450,
+      "$type": "fontWeight"
+    }
+  },
+  "Line Height": {
+    "12": {
+      "$value": 12,
+      "$type": "dimension"
+    },
+    "16": {
+      "$value": 16,
+      "$type": "dimension"
+    },
+    "18": {
+      "$value": 18,
+      "$type": "dimension"
+    },
+    "19": {
+      "$value": 19,
+      "$type": "dimension"
+    },
+    "20": {
+      "$value": 20,
+      "$type": "dimension"
+    },
+    "22": {
+      "$value": 22,
+      "$type": "dimension"
+    },
+    "28": {
+      "$value": 28,
+      "$type": "dimension"
+    },
+    "32": {
+      "$value": 32,
+      "$type": "dimension"
+    },
+    "50": {
+      "$value": 50,
+      "$type": "dimension"
+    },
+    "Text-L": {
+      "$value": 24,
+      "$type": "dimension"
+    }
+  },
+  "Letter Spacing": {
+    "0": {
+      "$value": 0,
+      "$type": "dimension"
+    },
+    "Tight-20": {
+      "$value": -0.02,
+      "$type": "dimension"
+    },
+    "Tight-40": {
+      "$value": -0.036,
+      "$type": "dimension"
+    },
+    "Tight-60": {
+      "$value": -0.065,
+      "$type": "dimension"
+    },
+    "Tight-80": {
+      "$value": -0.075,
+      "$type": "dimension"
+    },
+    "Tight-100": {
+      "$value": -0.1,
+      "$type": "dimension"
+    },
+    "Tight-120": {
+      "$value": -0.12,
+      "$type": "dimension"
+    },
+    "Tight-240": {
+      "$value": -0.24,
+      "$type": "dimension"
+    },
+    "Tight-300": {
+      "$value": -0.3,
+      "$type": "dimension"
+    },
+    "Wide-300": {
+      "$value": 0.3,
+      "$type": "dimension"
+    }
+  },
+  "Header": {
+    "48 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "48",
+        "lineHeight": "50",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "48 Medium": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 500,
+        "fontSize": "48",
+        "lineHeight": "50",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "30 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "30",
+        "lineHeight": "32",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "24 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "24",
+        "lineHeight": "28",
+        "letterSpacing": "-0.12"
+      },
+      "$type": "typography"
+    },
+    "24 Medium": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 500,
+        "fontSize": "24",
+        "lineHeight": "28",
+        "letterSpacing": "-0.24"
+      },
+      "$type": "typography"
+    },
+    "20 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "20",
+        "lineHeight": "22",
+        "letterSpacing": "-0.3"
+      },
+      "$type": "typography"
+    },
+    "18 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "18",
+        "lineHeight": "20",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "17 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "17",
+        "lineHeight": "100",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "17 Regular": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 400,
+        "fontSize": "17",
+        "lineHeight": "100",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "16 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "16",
+        "lineHeight": "18",
+        "letterSpacing": "-0.1"
+      },
+      "$type": "typography"
+    },
+    "14 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "14",
+        "lineHeight": "16",
+        "letterSpacing": "-0.1"
+      },
+      "$type": "typography"
+    }
+  },
+  "Text": {
+    "17 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "17",
+        "lineHeight": "22",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "17 Medium": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 500,
+        "fontSize": "17",
+        "lineHeight": "18",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "16 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "16",
+        "lineHeight": "100",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "16 Medium": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 500,
+        "fontSize": "16",
+        "lineHeight": "100",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "15 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "15",
+        "lineHeight": "18",
+        "letterSpacing": "0.3"
+      },
+      "$type": "typography"
+    },
+    "15 Medium": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 500,
+        "fontSize": "15",
+        "lineHeight": "19",
+        "letterSpacing": "-0.075"
+      },
+      "$type": "typography"
+    },
+    "14 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "14",
+        "lineHeight": "18",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "14 Medium": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 500,
+        "fontSize": "14",
+        "lineHeight": "18",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    }
+  },
+  "Caption": {
+    "13 Medium": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 500,
+        "fontSize": "13",
+        "lineHeight": "18",
+        "letterSpacing": "-0.065"
+      },
+      "$type": "typography"
+    },
+    "13 Regular": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 400,
+        "fontSize": "13",
+        "lineHeight": "18",
+        "letterSpacing": "-0.065"
+      },
+      "$type": "typography"
+    },
+    "12 Semibold": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 600,
+        "fontSize": "12",
+        "lineHeight": "16",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "12 Medium": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 500,
+        "fontSize": "12",
+        "lineHeight": "16",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "11 Medium": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 500,
+        "fontSize": "11",
+        "lineHeight": "18",
+        "letterSpacing": "-0.065"
+      },
+      "$type": "typography"
+    },
+    "11 Regular": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 400,
+        "fontSize": "11",
+        "lineHeight": "16",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "10 Medium": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 500,
+        "fontSize": "10",
+        "lineHeight": "100",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    },
+    "10 Regular": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 400,
+        "fontSize": "10",
+        "lineHeight": "12",
+        "letterSpacing": "-0.02"
+      },
+      "$type": "typography"
+    },
+    "9 Medium": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontWeight": 500,
+        "fontSize": "9",
+        "lineHeight": "12",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    }
+  },
+  "Body": {
+    "L Regular": {
+      "$value": {
+        "fontFamily": "Roboto Flex",
+        "fontWeight": 400,
+        "fontSize": "16",
+        "lineHeight": "24",
+        "letterSpacing": "0"
+      },
+      "$type": "typography"
+    }
+  },
+  "Mono": {
+    "9 Medium": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontWeight": 450,
+        "fontSize": "9",
+        "lineHeight": "12",
+        "letterSpacing": "-0.036"
+      },
+      "$type": "typography"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "Backdrop Blur": {
+    "SM": {
+      "$value": {
+        "radius": "4"
+      },
+      "$type": "blur"
+    },
+    "MD": {
+      "$value": {
+        "radius": "6"
+      },
+      "$type": "blur"
+    },
+    "LG": {
+      "$value": {
+        "radius": "8"
+      },
+      "$type": "blur"
+    },
+    "XL": {
+      "$value": {
+        "radius": "10"
+      },
+      "$type": "blur"
+    }
+  }
+}

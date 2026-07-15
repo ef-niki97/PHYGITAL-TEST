@@ -1,0 +1,326 @@
+{
+  "Alpha White": {
+    "0": {
+      "$value": "#ffffff",
+      "$type": "color"
+    },
+    "50": {
+      "$value": "#ffffff0d",
+      "$type": "color"
+    },
+    "100": {
+      "$value": "#ffffff1a",
+      "$type": "color"
+    },
+    "200": {
+      "$value": "#ffffff33",
+      "$type": "color"
+    },
+    "300": {
+      "$value": "#ffffff4d",
+      "$type": "color"
+    },
+    "400": {
+      "$value": "#ffffff66",
+      "$type": "color"
+    },
+    "500": {
+      "$value": "#ffffff80",
+      "$type": "color"
+    },
+    "600": {
+      "$value": "#ffffff99",
+      "$type": "color"
+    },
+    "700": {
+      "$value": "#ffffffb2",
+      "$type": "color"
+    },
+    "800": {
+      "$value": "#ffffffcc",
+      "$type": "color"
+    },
+    "900": {
+      "$value": "#ffffffe5",
+      "$type": "color"
+    },
+    "950": {
+      "$value": "#fffffff2",
+      "$type": "color"
+    }
+  },
+  "Alpha Black": {
+    "50": {
+      "$value": "#0000000d",
+      "$type": "color"
+    },
+    "100": {
+      "$value": "#0000001a",
+      "$type": "color"
+    },
+    "200": {
+      "$value": "#00000033",
+      "$type": "color"
+    },
+    "300": {
+      "$value": "#0000004d",
+      "$type": "color"
+    },
+    "400": {
+      "$value": "#00000066",
+      "$type": "color"
+    },
+    "500": {
+      "$value": "#00000080",
+      "$type": "color"
+    },
+    "600": {
+      "$value": "#00000099",
+      "$type": "color"
+    },
+    "700": {
+      "$value": "#000000b2",
+      "$type": "color"
+    },
+    "800": {
+      "$value": "#000000cc",
+      "$type": "color"
+    },
+    "900": {
+      "$value": "#000000e5",
+      "$type": "color"
+    },
+    "950": {
+      "$value": "#000000f2",
+      "$type": "color"
+    }
+  },
+  "Background": {
+    "Gray-light": {
+      "$value": "#f7f7f7",
+      "$type": "color"
+    },
+    "Gray-medium": {
+      "$value": "#f3f3f4",
+      "$type": "color"
+    },
+    "Gray": {
+      "$value": "#f3f4f6",
+      "$type": "color"
+    },
+    "Black": {
+      "$value": "#2d2d2d",
+      "$type": "color"
+    },
+    "White": {
+      "$value": "#ffffff",
+      "$type": "color"
+    },
+    "Orange": {
+      "$value": "#f27807",
+      "$type": "color"
+    },
+    "Violet": {
+      "$value": "#7c4ae7",
+      "$type": "color"
+    },
+    "Violet-10": {
+      "$value": "#f2ecfd",
+      "$type": "color"
+    },
+    "Content-tertiary": {
+      "$value": "#fafafa",
+      "$type": "color"
+    },
+    "Interaction-tertiary": {
+      "$value": "#e5e6e7",
+      "$type": "color"
+    },
+    "Interaction-tertiary-hv": {
+      "$value": "#dfe0e2",
+      "$type": "color"
+    },
+    "Overlay-black-20": {
+      "$value": "#00000033",
+      "$type": "color"
+    },
+    "inverted": {
+      "$value": "#000000",
+      "$type": "color"
+    }
+  },
+  "Status": {
+    "Accent-error": {
+      "$value": "#f20d33",
+      "$type": "color"
+    },
+    "Error": {
+      "$value": "#feecef",
+      "$type": "color"
+    },
+    "Accent-positive": {
+      "$value": "#2cba53",
+      "$type": "color"
+    },
+    "Positive": {
+      "$value": "#d7f5e3",
+      "$type": "color"
+    },
+    "Accent-warning": {
+      "$value": "#f27807",
+      "$type": "color"
+    },
+    "Warning": {
+      "$value": "#feead7",
+      "$type": "color"
+    }
+  },
+  "Interaction": {
+    "Violet": {
+      "$value": "#7d46ea",
+      "$type": "color"
+    },
+    "Violet-hv": {
+      "$value": "#9b71ef",
+      "$type": "color"
+    },
+    "Violet-light": {
+      "$value": "#ebe0ff",
+      "$type": "color"
+    },
+    "Violet-light-hv": {
+      "$value": "#f2ebff",
+      "$type": "color"
+    },
+    "Black": {
+      "$value": "#2d2d2d",
+      "$type": "color"
+    },
+    "Black-hv": {
+      "$value": "#3b3b3b",
+      "$type": "color"
+    },
+    "Grey": {
+      "$value": "#747474",
+      "$type": "color"
+    },
+    "Grey-light": {
+      "$value": "#f3f3f4",
+      "$type": "color"
+    },
+    "Grey-light-hv": {
+      "$value": "#eaeaec",
+      "$type": "color"
+    },
+    "White": {
+      "$value": "#ffffff",
+      "$type": "color"
+    },
+    "White-hv": {
+      "$value": "#f7f7f7",
+      "$type": "color"
+    },
+    "Green": {
+      "$value": "#38cd62",
+      "$type": "color"
+    }
+  },
+  "Socket": {
+    "Default": {
+      "$value": "#1e3050",
+      "$type": "color"
+    },
+    "Text": {
+      "$value": "#5cbef6",
+      "$type": "color"
+    },
+    "Image": {
+      "$value": "#f58e62",
+      "$type": "color"
+    },
+    "3D": {
+      "$value": "#7246f6",
+      "$type": "color"
+    },
+    "Audio": {
+      "$value": "#49e78f",
+      "$type": "color"
+    },
+    "Video": {
+      "$value": "#ff5c70",
+      "$type": "color"
+    },
+    "SVG": {
+      "$value": "#32a852",
+      "$type": "color"
+    },
+    "Binary": {
+      "$value": "#c100ff",
+      "$type": "color"
+    },
+    "Document": {
+      "$value": "#facc15",
+      "$type": "color"
+    },
+    "Bool": {
+      "$value": "#898c93",
+      "$type": "color"
+    },
+    "Trigger": {
+      "$value": "#2cd25a",
+      "$type": "color"
+    }
+  },
+  "Constant": {
+    "Purple": {
+      "$value": "#7c4ae7",
+      "$type": "color"
+    },
+    "Green": {
+      "$value": "#38cd62",
+      "$type": "color"
+    },
+    "Red": {
+      "$value": "#f20d33",
+      "$type": "color"
+    },
+    "Pink": {
+      "$value": "#ec4899",
+      "$type": "color"
+    },
+    "Cyan": {
+      "$value": "#06b6d4",
+      "$type": "color"
+    },
+    "Blue": {
+      "$value": "#3b82f6",
+      "$type": "color"
+    },
+    "Teal": {
+      "$value": "#14b8a6",
+      "$type": "color"
+    },
+    "Yellow": {
+      "$value": "#eab308",
+      "$type": "color"
+    },
+    "Orange": {
+      "$value": "#f27807",
+      "$type": "color"
+    }
+  },
+  "Text": {
+    "Secondary": {
+      "$value": "#999999",
+      "$type": "color"
+    },
+    "fg-subtle": {
+      "$value": "#a2a2a9",
+      "$type": "color"
+    },
+    "fg-inverted": {
+      "$value": "#fafafa",
+      "$type": "color"
+    }
+  }
+}
