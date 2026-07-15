@@ -24,3 +24,13 @@
 - **State**: Default / Hover / Active / Filled / Filled Hover / Filled Active / Disabled / Error
 
 Внутри инпута можно независимо включать/выключать: Description, Label, Link (если есть Label), Icon left, Icon right. После ввода символа появляется кнопка-крестик для очистки поля. Если текст лейбла/инпута не помещается в строку — уходит в многоточие (в файле явно отмечено, что так делать "очень плохо", то есть это нежелательный кейс, а не задуманное поведение).
+
+## Реализация в коде (продакшен-референс)
+
+Путь в исходном репозитории: `src/solidJs/shared/ui/atoms/Input`
+
+Базовый компонент `Input` собран на `tailwind-variants`: проп `variant` даёт пять цветовых схем (`default`, `outline`, `Gray`, `trainPageVariant`, `dropDownBtn`) — в Figma-инвентаре из них присутствуют только `Gray` и `outline` (там называется Outlined), остальные три — служебные варианты не из этой страницы Figma. Проп `size` даёт `small` / `medium` / `large`; в Figma для Input задокументированы только Small и Medium, Large в спеке не встречается. Есть compound-вариант: при `Gray` + `medium` паддинг переопределяется на `p-3`. Состояния `Hover`/`Active`/`Filled`/`Error` из Figma как отдельные пропсы не реализованы: hover покрывается CSS-псевдоклассами внутри `border-gray-300 hover:...` не задан явно (только фокус меняет placeholder-opacity), а error/label — это не state самого `Input`, а отдельные компоненты-обёртки `InputLabel` и `InputLabelError`, которые кладут лейбл сверху и текст ошибки снизу вокруг переданного `children`. Disabled — отдельный булев проп, даёт `opacity-50 pointer-events-none`. Кнопки-крестика для очистки поля в коде нет — это, судя по всему, логика уровня конкретных форм, а не самого атома `Input`.
+
+Скопированные файлы:
+- `Reference Code/Input.tsx` — сам компонент `Input` (tv-стили, variants/size/disabled) плюс обёртки `InputLabel` и `InputLabelError` для лейбла и текста ошибки.
+- `Reference Code/Input.stories.tsx` — Storybook-стори с таблицей всех вариантов/размеров/состояний Input, а также соседних полей ввода (TextAreaChat, Editable, SearchableMenu) для сравнения паттернов.

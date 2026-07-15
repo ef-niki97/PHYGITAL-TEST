@@ -1,0 +1,14 @@
+.notificationBarContainer {
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  font-size: 0.6rem;
+  gap: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--monochrome-gray-40, #60606C);
+  background: rgba(96, 96, 108, 0.30);
+  /* Backdrop Blur/Medium */
+  backdrop-filter: blur(9px);
+  width: 100%;
+
+}

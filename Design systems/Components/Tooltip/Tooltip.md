@@ -30,3 +30,15 @@
 - **Ratio**: 16:9 / 3:2 / 1:1
 
 Назначение не задокументировано в Figma (нет блока "Для чего применяется?") ни для одного из семейств.
+
+## Реализация в коде (продакшен-референс)
+
+Путь в исходном репозитории: `src/solidJs/shared/ui/atoms/Tooltip`
+
+В файле — два разных компонента. `TooltipClosedComponent` — актуальная реализация на Ark UI: `Root`/`Trigger`/`Positioner`/`Content`/`Arrow`/`ArrowTip`, с пропами `showArrow`, `portaled`/`portalMount`, `content` и кастомизацией триггера/контента через `children`/`asContent`; `openDelay`/`closeDelay` = 0, `lazyMount`/`unmountOnExit` включены, `placement` по умолчанию `top`. Второй компонент, `Tooltip` (стили из `.module.scss`), — старая версия на обычном `div` без Ark UI, с шрифтом 0.4rem и чёрным фоном; в файле стори (`TooltipClosedComponent.stories.tsx`) она прямо помечена как "Tooltip (Legacy Variant)". Семейство Popover (Accent/Secondary, Top Left/Top Right/Bottom Right) из Figma-инвентаря в скопированных файлах не реализовано.
+
+Скопированные файлы:
+- `Reference Code/Tooltip.tsx` — компоненты `TooltipClosedComponent` (актуальный, Ark UI) и `Tooltip` (легаси, div)
+- `Reference Code/Tooltip.module.scss` — стили легаси-компонента `Tooltip`
+- `Reference Code/TooltipClosedComponent.stories.tsx` — Storybook-стори с таблицей вариантов (placement × content) и описанием токенов стилей
+- `Reference Code/index.ts` — реэкспорт как `StyledTooltip`

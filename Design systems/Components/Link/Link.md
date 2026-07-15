@@ -19,3 +19,12 @@
 - **State**: Default / Hover / Disabled
 
 Назначение не задокументировано в Figma (нет блока "Для чего применяется?").
+
+## Реализация в коде (продакшен-референс)
+
+Путь в исходном репозитории: `src/solidJs/shared/ui/atoms/TextLink`
+
+В коде это `TextLink` — не `<a>`, а `<div>` с ролью ссылки, обязательный проп `text` (строка) и всегда рендерящаяся справа иконка `ChevronDown`, которую можно развернуть на 180° через `chevronUp` (используется как индикатор раскрытия дропдауна/секции, а не только как декоративная стрелка). Пропсы: `text`, `disabled`, `chevronUp`, `chevronClass`, `class`, `style`, плюс стандартные атрибуты div. Вариантов `Type: Secondary/Tertiary` и `Size: M/S` из Figma в коде нет — реализован один визуальный стиль (подчёркнутый текст пунктиром + иконка), без переключателя размера. `disabled` даёт `pointer-events-none`, приглушённый цвет текста и `aria-disabled`, `tabIndex=-1` — состояние Hover покрывается через `hover:text-text-primary`.
+
+Скопированные файлы:
+- `Reference Code/TextLink.tsx` — компонент TextLink (текст + иконка chevron, disabled-состояние).

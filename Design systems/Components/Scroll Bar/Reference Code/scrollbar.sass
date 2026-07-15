@@ -1,0 +1,31 @@
+// Извлечено из src/styles/common/common.sass (оригинальный файл содержит и другие, не относящиеся к скроллбару, глобальные стили)
+/* Target the scrollbar */
+::-webkit-scrollbar
+  height: 4px
+  width: 4px
+  border: none
+  outline: none
+/* Style the thumb */
+::-webkit-scrollbar-thumb
+  @apply bg-border-tertiary
+  border-radius: 10px
+  cursor: pointer
+  /* Color of the thumb */
+  transition: 0.2s
+  visibility: hidden
+//&:hover ,&:focus, &:active
+//    visibility: visible
+
+/* Style the track */
+::-webkit-scrollbar-track
+  background-color: transparent
+  visibility: hidden
+  transition: 0.2s
+
+*:hover
+  &::-webkit-scrollbar-thumb
+    visibility: visible
+
+
+  &::-webkit-scrollbar-track
+    visibility: visible

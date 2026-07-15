@@ -24,3 +24,12 @@
 - **Property 1**: Default / Filled / Filled_Active
 
 Назначение не задокументировано в Figma (нет блока "Для чего применяется?").
+
+## Реализация в коде (продакшен-референс)
+
+Путь в исходном репозитории: `src/solidJs/shared/ui/atoms/Slider`
+
+Компонент `StyledSlider` — тонкая обёртка над `Slider` из `@ark-ui/solid`: `Root` → `Control` → `Track` (с `Range` и `Thumb`). Принимает все нативные пропсы `SliderRootProps` (в том числе `orientation` — горизонтальный/вертикальный, что покрывает Label Position Top/Side из Figma на уровне ориентации трека, но не как отдельный проп разметки лейбла) плюс кастомные `trackClass`/`controllClass` для переопределения стилей. Трек — `h-4` (16px) со скруглением и градиентной заливкой (`Range`, градиент violet→fuchsia→violet), бегунок (`Thumb`) — квадрат `size-4` (16px) со скруглением в круг и focus-состоянием (`focus:outline-blue-500`) и disabled-состоянием (`disabled:opacity-50`). Явного варианта "Input Slider" с числовым полем ввода, заявленного в Figma-инвентаре, в этом файле нет — реализован только базовый ползунок без вложенного текстового инпута; Fill-варианты (No Fill/Amount Fill/Negative Offset Fill/Positive Offset Fill) в коде не выделены как отдельные пропсы, а выражаются через позицию `Range` относительно `Track`, которую нужно вычислять на вызывающей стороне.
+
+Скопированные файлы:
+- `Reference Code/Slider.tsx` — компонент `StyledSlider` (Track/Range/Thumb на Ark UI Slider).

@@ -35,3 +35,12 @@
 Компактный бейдж с иконкой слева и текстом (встречается в узлах/нодах), ширина по контенту.
 
 Назначение не задокументировано в Figma (нет блока "Для чего применяется?") ни для одного из семейств.
+
+## Реализация в коде (продакшен-референс)
+
+Путь в исходном репозитории: `src/solidJs/shared/ui/atoms/Badge`
+
+Компонент собран на `tailwind-variants`: базовый `div` с вариантами `variant` (default / warning / accent / outline / credits / creditsDark / creditsOrange) и `size` (small / medium), плюс `compoundVariants` для точной подгонки типографики и отступов под каждую пару variant+size. Соответствие Figma-инвентарю частичное: `outline`, `default`, `accent` совпадают по названию с Type из основной матрицы Badge, но `Grey` и `New` из Figma в коде отдельными вариантами не представлены; варианты `credits`/`creditsDark`/`creditsOrange`, судя по названию и стилю (заливка, гэп под иконку+число), ближе к семейству "Node Coins Balance" (Default/Error), а не к основной матрице — прямого 1:1 соответствия по имени нет. Отдельных компонентов для "Badge Sale" и "Badge (иконка + текст)" в этом файле нет — это, вероятно, просто `Badge` с произвольными children (иконка + текст передаются как children, разметка иконки не встроена в сам компонент).
+
+Скопированные файлы:
+- `Reference Code/Badge.tsx` — компонент `Badge` на tailwind-variants: variant/size/compoundVariants, проброс class/className

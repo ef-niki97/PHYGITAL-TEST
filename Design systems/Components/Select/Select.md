@@ -33,3 +33,15 @@
 - **State**: Default / Hover
 
 > ❗ Легаси: в файле отдельно отмечено, что "в легаси встречаются ещё вот такие варианты селекта, когда выделение чёрное и Label 16px, а также когда дропдаун при открытии увеличен" — это старые варианты, не текущий стандарт.
+
+## Реализация в коде (продакшен-референс)
+
+Путь в исходном репозитории: `src/solidJs/shared/ui/molecules/Select`
+
+Компонент `Select` (файл `Select.tsx`) построен на `Select` из `@ark-ui/solid` с обёрткой `tailwind-variants`/`createStyleContext`. Реализованы варианты `variant` (`default` / `ghost`) и `size` (`sm` / `md` / `lg`) — то есть в коде три размера против двух (Small/Medium) в Figma-инвентаре, добавлен `lg` с отдельной раскладкой (лейбл сверху, серый фон триггера). Есть готовый композитный компонент `SelectClosedComponent` с пропсами `items` (`label`, `value`, `subtitle`, `icon`, `avatar`, `disabled`, `group`, `onSelect`, `as`), `value`/`defaultValue`, `placeholder`, `label`, `renderValue` — покрывает Type=Default/User из Dropdown Select инвентаря (иконка/аватар в пункте списка соответствуют Type=User). Отдельный файл `SelectClosed.tsx` содержит вторую, более "тяжёлую" реализацию closed-select с поддержкой `multiple`, `clearable`, `searchable`, `renderTrigger`, `renderItem`, группами (`SelectClosedGroup`) и вариантом без обёртки `Root` (`SelectClosedComponentWithoutRoot`) — в файле спеки эти возможности (мультивыбор, группы, поиск) не упомянуты как отдельные Figma-варианты. Состояния Hover/Active/Filled/Error из Figma-инвентаря в коде выражены через Tailwind data-атрибуты (`data-[state=open]`, `hover:`, `focus`) и не документированы как отдельные пропсы.
+
+Скопированные файлы:
+- `Reference Code/Select.tsx` — основной компонент `Select` (варианты `default`/`ghost`, размеры `sm`/`md`/`lg`) и `SelectClosedComponent`.
+- `Reference Code/SelectClosed.tsx` — расширенная версия closed-select с мультивыбором, поиском, группами и рендер-пропсами.
+- `Reference Code/Select.stories.tsx` — Storybook-примеры использования компонента.
+- `Reference Code/index.ts` — реэкспорт `StyledSelect` и `StyledSelectClosed`.
