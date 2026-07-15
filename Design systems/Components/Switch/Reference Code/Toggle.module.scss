@@ -1,0 +1,26 @@
+.input[data-checked="true"] + .label {
+  justify-content: flex-end;
+  background-color: rgba(56, 205, 98, 1);
+}
+
+.toggler {
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background-color: white;
+  transition: 0.5s;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  background-color: rgba(84, 84, 100, 1);
+  border-radius: 999px;
+  width: 28px;
+  height: 16px;
+  transition: 0.5s;
+  padding: 2px;
+
+}

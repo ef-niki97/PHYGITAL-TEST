@@ -75,3 +75,20 @@
 ### 9. Button Login
 Соц. логин ("Continue with Google").
 - **State**: Default / Hover
+
+## Реализация в коде (продакшен-референс)
+
+Путь в исходном репозитории: `src/solidJs/shared/ui/atoms/Button` и `src/solidJs/shared/ui/atoms/ButtonSwitcher`
+
+`Button.tsx` содержит два компонента. Основной `Button` — полиморфный (`component` меняет рендер-элемент через `Dynamic`), с пропами `variant`, `size` (small/medium/large), `pending`, `disabled`, `component`. Вариантов `color` в коде на порядок больше, чем типов в Figma-инвентаре, и они называются иначе: вместо Figma-схемы Primary/Secondary/Tertiary/Tertiary v2/White/Ghost/Accent/Danger в коде используется матрица вида `{Primary|Secondary|Tertiary}{Accent|Neutral|Overlay}[Icon]` (`PrimaryAccent`, `SecondaryNeutral`, `TertiaryOverlay`, `SecondaryNeutralIcon` и т.д.) плюс отдельные одиночные варианты под конкретные места использования (`ButtonPremium`, `ButtonNode`, `ButtonFooter`, `FlexButtonPrimary`/`FlexButtonSecondary`, `Ghost`, `dark`, `opacity`, `headerButton` и др.). Судя по названиям, `ButtonPremium` и `ButtonNode` соответствуют Figma-семействам "Button Premium" и "Button Generation"/кнопкам в нодах, а `FlexButtonPrimary`/`FlexButtonSecondary` — семейству "Button Flex"; остальные Figma-семейства (Button Icon, Button Cut Node, Ask AI Button, Button Login) отдельными вариантами здесь не выделены и, возможно, реализованы в других, не скопированных файлах. Состояние `pending` даёт shimmer-анимацию (аналог Figma-состояния Loader), `disabled` — стандартное затемнение с `pointer-events-none`. Второй компонент, `ButtonExtraBold`, реализует ровно то, что задокументировано в Figma для "Button Extra Bold": варианты `Primary`/`Secondary`/`Tertiary` и состояние `disabled`.
+
+`ButtonSwitcher.tsx` и соседние файлы — не отдельное семейство кнопок из Figma, а обвязка для переключателя между несколькими значениями (аналог сегмент-контрола), построенная поверх `Button`: `ButtonSwitcher` — générик-компонент на `Index`, вычисляющий `isSelected` для каждого элемента (поддерживает как одиночный `activeIndex`, так и множественный выбор через объект-Record); `ButtonSwitcherBtnItemsContainer`/`ButtonSwitcherBtnItemsContainerPremiumBanner` — контейнеры-списки для текстовых кнопок-переключателей; `SwitcherButtonItem`/`SwitcherButtonPremiumItem` — сами кнопки-переключатели (текстовые); `SwitcherImageItemsContainer`/`SwitcherImageItem` — вариант с карточками-изображениями вместо текста (используется, например, для выбора среди визуальных превью). В Figma-инвентаре этого компонента нет как отдельного семейства.
+
+Скопированные файлы:
+- `Reference Code/Button/Button.tsx` — `Button` (полиморфный, варианты color/size/pending/disabled) и `ButtonExtraBold`
+- `Reference Code/Button/Button.stories.tsx` — Storybook-истории с примерами всех вариантов и размеров
+- `Reference Code/ButtonSwitcher/ButtonSwitcher.tsx` — générик-логика переключателя (одиночный/множественный выбор)
+- `Reference Code/ButtonSwitcher/ButtonSwitcherBtnItemsContainer.tsx` — контейнеры-списки для текстовых кнопок-переключателей
+- `Reference Code/ButtonSwitcher/SwitcherButtonItem.tsx` — текстовые кнопки-переключатели (обычная и Premium-версия)
+- `Reference Code/ButtonSwitcher/SwitcherImageItem.tsx` — элемент-переключатель на основе изображения
+- `Reference Code/ButtonSwitcher/SwitcherImageItemsContainer.tsx` — контейнер-сетка для image-переключателей

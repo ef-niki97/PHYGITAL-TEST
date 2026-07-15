@@ -35,3 +35,14 @@
 - **Type**: Small / Medium
 - **Active**: True / False
 - **State**: Default / Hover / Disabled
+
+## Реализация в коде (продакшен-референс)
+
+Путь в исходном репозитории: `src/solidJs/shared/ui/atoms/CheckBox`
+
+В коде существуют два независимых компонента чекбокса. Первый — `CheckBox` (нижний, на native `<input type="checkbox">` + `<label>`), стилизован через `CheckBox.module.scss` с зашитыми хардкод-цветами (`#9570FC` на checked, `#CBD5E1` на border) и фиксированным размером 16×16px — состояние disabled/hover в CSS не описано. Второй — `ArkClosedCheckBox`/`Root`/`Control`/`Indicator`/`Label`, построенный на `@ark-ui/solid` Checkbox с tailwind-variants: реализован только один размер (`size: "md"`, 20×20px через `size-5`) и вариант `disabled` (снижение opacity, `pointer-events-none`); слот `color` объявлен, но пуст. Индикатор поддерживает как `checked` (иконка `Check`), так и `indeterminate` (иконка `Minus`) — в Figma-инвентаре indeterminate не упомянут. В целом набор размеров из Figma (Large 24px, Small 18px, Node 16px, group item 268×58/40px) в коде не реализован — есть только один размер md и отдельный ручной 16px-вариант; hover-состояние для ArkCheckBox задано (`hover:outline-border-gray-dark`), а group item (пункт списка с лейблом) как отдельный компонент не найден.
+
+Скопированные файлы:
+- `Reference Code/CheckBox.tsx` — оба компонента: native `CheckBox` (input+label) и ark-ui-based `Root/Control/Indicator/Label`/`ArkClosedCheckBox`
+- `Reference Code/CheckBox.module.scss` — стили native-варианта (checked-цвета, размер 16×16px)
+- `Reference Code/index.ts` — реэкспорт модуля `CheckBox`

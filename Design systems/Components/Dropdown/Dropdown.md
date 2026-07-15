@@ -42,3 +42,15 @@
 - **State**: Default / Hover / Disabled / Open
 
 Фиксированный размер 90×24px во всех состояниях.
+
+## Реализация в коде (продакшен-референс)
+
+Путь в исходном репозитории: `src/solidJs/shared/ui/molecules/DropDown`
+
+В коде найдено два компонента, покрывающих разные семейства из Figma. `DropDown` — обёртка над `@ark-ui/solid` `HoverCard` (кнопка-триггер `btnContent` + всплывающий контент `children`, позиционирование `bottom-end`, `openDelay: 0`/`closeDelay: 100`), со стрелкой-индикатором, которая разворачивается на 180° при открытии (пропс `isNeedToHiderArrow` может её скрыть) — это ближе всего к семействам "Dropdown Trigger" и "Dropdown Menu". `DropDownPicker` (файл помечен `//@ts-nocheck`) реализует именно то, что в Figma отмечено как легаси-"Dropdown Picker": кнопка с раскрывающимся списком `<ul>`, поддерживает два режима — `singleSelect` и `multiSelect`, клавиатурную навигацию (стрелки вверх/вниз, автоскролл к выбранному пункту), слоты `TopItemsSlot`/`BottomItemsSlot` и управление открытием как изнутри (свой `createSignal`), так и снаружи (`isForcedOpenClose`/`setIsForcedOpenClose`). Отдельной реализации "Node Dropdown" (90×24px, State Default/Hover/Disabled/Open) среди скопированных файлов не найдено — вероятно, собирается на основе `DropDown` или `DropDownPicker` с иными пропсами/стилями, но как самостоятельный компонент в этой папке не выделен.
+
+Скопированные файлы:
+- `Reference Code/DropDown.tsx` — HoverCard-обёртка (триггер + позиционируемый контент), соответствует Dropdown Trigger/Menu
+- `Reference Code/DropDownPicker.tsx` — легаси Dropdown Picker: `DropDownPickerContainer`, `DropDownPickerItem`, generic `DropDownPicker` (single/multi select)
+- `Reference Code/DropDownPicker.module.scss` — стили пикера (тёмный фон `#202020`, выпадающий список с скроллом и тенью)
+- `Reference Code/DropDown.stories.tsx` — Storybook-истории с примерами использования `DropDown`

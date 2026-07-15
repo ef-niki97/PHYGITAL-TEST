@@ -1,0 +1,27 @@
+.input:checked + label {
+  background: #9570FC;
+  border-color: #9570FC;
+
+  &:before {
+    content: url("/public/chekedIcon.svg");
+    display: block;
+    color: white;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  border-radius: 2px;
+  width: 16px;
+  font-size: 10px;
+  height: 16px;
+  border: 1px solid #CBD5E1;
+
+
+}
