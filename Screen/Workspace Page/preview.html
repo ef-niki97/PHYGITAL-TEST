@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Workspace Page — preview</title>
+<style>
+	:root {
+		--color-bg-white: #ffffff;
+		--color-bg-gray-light: #f7f7f7;
+		--color-bg-gray-medium: #f3f3f4;
+		--color-bg-gray: #f3f4f6;
+		--color-bg-black: #2d2d2d;
+		--color-text-primary: #2d2d2d;
+		--color-text-secondary: #555555;
+		--color-border-secondary: #efeff0;
+		--color-violet: #7d46ea;
+		--color-violet-light: #ebe0ff;
+		--color-success: #1a9c5f;
+		--color-warning: #f97316;
+
+		--radius-md: 6px;
+		--radius-lg: 8px;
+		--radius-xl: 12px;
+		--radius-2xl: 16px;
+
+		--shadow-card: 0px 2px 3px rgba(0, 0, 0, 0.08);
+		--font: "Poppins", "Inter", system-ui, -apple-system, sans-serif;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	body {
+		margin: 0;
+		font-family: var(--font);
+		color: var(--color-text-primary);
+		overflow: hidden;
+	}
+
+	button {
+		font-family: inherit;
+		border: none;
+		background: none;
+		cursor: pointer;
+		color: inherit;
+	}
+
+	.icon {
+		display: inline-flex;
+		flex-shrink: 0;
+	}
+	.icon svg {
+		width: 100%;
+		height: 100%;
+	}
+
+	/* ---------- page ---------- */
+	.page {
+		position: relative;
+		width: 100vw;
+		height: 100vh;
+	}
+
+	/* ---------- canvas ---------- */
+	.canvas {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background-color: var(--color-bg-gray-light);
+		background-image: radial-gradient(var(--color-border-secondary) 1px, transparent 1px);
+		background-size: 16px 16px;
+	}
+
+	/* ---------- header ---------- */
+	.header {
+		position: absolute;
+		inset: 0 0 auto 0;
+		z-index: 10;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+		padding: 8px;
+	}
+	.header__group {
+		display: flex;
+		align-items: center;
+		height: 56px;
+		gap: 20px;
+		padding: 12px 16px;
+		border-radius: var(--radius-2xl);
+		background: var(--color-bg-white);
+		box-shadow: var(--shadow-card);
+	}
+	.header__group--right {
+		justify-content: flex-end;
+	}
+	.icon-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 4px;
+		border-radius: var(--radius-md);
+	}
+	.icon-btn:hover {
+		background: var(--color-bg-gray-light);
+	}
+	.project-name {
+		display: flex;
+		align-items: center;
+	}
+	.project-name__input {
+		width: 144px;
+		padding: 4px 6px;
+		font-size: 16px;
+		font-weight: 500;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.project-name__chevron {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		padding: 10px 6px;
+	}
+	.btn-secondary {
+		padding: 8px 12px;
+		border-radius: var(--radius-md);
+		background: var(--color-bg-gray-medium);
+		font-size: 12px;
+		font-weight: 500;
+	}
+	.autosave {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 28px;
+		height: 28px;
+		border-radius: var(--radius-md);
+		background: var(--color-bg-white);
+	}
+	.credits {
+		display: flex;
+		align-items: center;
+		height: 32px;
+		border: 1.5px solid var(--color-violet);
+		border-radius: var(--radius-md);
+		overflow: hidden;
+	}
+	.credits__amount {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		padding: 0 8px;
+		font-size: 12px;
+		font-weight: 500;
+		color: var(--color-violet);
+	}
+	.credits__upgrade {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 4px;
+		height: 100%;
+		width: 98px;
+		padding: 0 12px;
+		background: var(--color-violet);
+		color: white;
+		font-size: 12px;
+		font-weight: 500;
+	}
+	.avatar {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		border-radius: var(--radius-lg);
+		background: var(--color-bg-gray-medium);
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	/* ---------- sidebar ---------- */
+	.sidebar {
+		position: absolute;
+		left: 0;
+		top: 72px;
+		bottom: 0;
+		z-index: 10;
+		width: 316px;
+		padding: 8px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		overflow-y: auto;
+	}
+	.templates-banner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: 24px 20px;
+		border-radius: var(--radius-2xl);
+		background: var(--color-violet-light);
+		text-align: left;
+	}
+	.templates-banner__label {
+		font-size: 16px;
+		font-weight: 600;
+		letter-spacing: -0.1px;
+		color: var(--color-violet);
+	}
+	.tabs-row {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+	.tabs {
+		display: flex;
+		flex: 1;
+		gap: 4px;
+		padding: 4px;
+		border-radius: var(--radius-xl);
+		background: var(--color-bg-gray-light);
+	}
+	.tab {
+		flex: 1;
+		padding: 12px 16px;
+		border-radius: 10px;
+		font-size: 13px;
+		font-weight: 500;
+		letter-spacing: -0.065px;
+		color: var(--color-text-secondary);
+	}
+	.tab.is-active {
+		background: var(--color-bg-white);
+		color: var(--color-violet);
+	}
+	.search-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 50px;
+		height: 50px;
+		border-radius: var(--radius-xl);
+		background: var(--color-bg-gray-light);
+		flex-shrink: 0;
+	}
+	.sections {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+	.section__heading {
+		margin: 0 0 4px;
+		padding: 0 8px;
+		font-size: 11px;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: var(--color-text-secondary);
+	}
+	.tool-item {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		gap: 10px;
+		padding: 8px;
+		border-radius: var(--radius-xl);
+		text-align: left;
+	}
+	.tool-item:hover {
+		background: var(--color-bg-gray-light);
+	}
+	.tool-item__thumb {
+		width: 44px;
+		height: 44px;
+		flex-shrink: 0;
+		border-radius: var(--radius-lg);
+		border: 1px solid var(--color-border-secondary);
+		background: var(--color-bg-gray);
+	}
+	.tool-item__text {
+		flex: 1;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+	.tool-item__title-row {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+	.tool-item__name {
+		flex: 1;
+		min-width: 0;
+		font-size: 14px;
+		font-weight: 500;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.tool-item__badge {
+		flex-shrink: 0;
+		padding: 2px 6px;
+		border-radius: var(--radius-md);
+		background: var(--color-bg-gray);
+		font-size: 10px;
+		font-weight: 500;
+		color: var(--color-text-secondary);
+	}
+	.tool-item__badge.is-new {
+		background: #ffe8d6;
+		color: #c2560c;
+	}
+
+	/* ---------- panel tools (bottom) ---------- */
+	.panel-tools {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		z-index: 10;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px;
+	}
+	.panel-tools__group {
+		display: flex;
+		align-items: center;
+		gap: 2px;
+		height: 40px;
+		padding: 0 4px;
+		border-radius: var(--radius-lg);
+		background: var(--color-bg-white);
+		box-shadow: var(--shadow-card);
+	}
+	.panel-tools__btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		border-radius: var(--radius-lg);
+		background: var(--color-bg-white);
+		box-shadow: var(--shadow-card);
+	}
+	.panel-tools__btn:hover,
+	.panel-tools__group .icon-btn:hover {
+		background: var(--color-bg-gray-light);
+	}
+	.zoom-level {
+		width: 55px;
+		padding: 0 4px 0 6px;
+		font-size: 12px;
+		font-weight: 500;
+	}
+	.ai-assistant {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		height: 40px;
+		padding: 0 12px;
+		border-radius: var(--radius-lg);
+		background: var(--color-bg-white);
+		box-shadow: var(--shadow-card);
+		font-size: 12px;
+		font-weight: 500;
+		line-height: 13px;
+		text-align: left;
+	}
+
+	/* ---------- additional tools (right) ---------- */
+	.additional-tools {
+		position: absolute;
+		right: 0;
+		top: 72px;
+		z-index: 10;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		width: 64px;
+		padding: 8px;
+	}
+	.additional-tools__btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 40px;
+		border-radius: var(--radius-lg);
+		background: var(--color-bg-white);
+		box-shadow: var(--shadow-card);
+	}
+	.additional-tools__btn:hover {
+		background: var(--color-bg-gray-light);
+	}
+
+	/* ---------- nodes ---------- */
+	.node {
+		position: absolute;
+		z-index: 5;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		width: 350px;
+		padding: 12px;
+		border-radius: var(--radius-2xl);
+		background: var(--color-bg-white);
+		box-shadow: var(--shadow-card);
+	}
+	.node--gpt-text {
+		left: 633px;
+		top: 193px;
+	}
+	.node--nano-banana {
+		left: 1084px;
+		top: 219px;
+	}
+	.node__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.node__title {
+		font-size: 14px;
+		font-weight: 600;
+	}
+	.node__ask-ai {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		padding: 4px 8px;
+		border-radius: var(--radius-md);
+		background: var(--color-bg-gray-light);
+		font-size: 12px;
+		font-weight: 500;
+	}
+	.node__status {
+		margin: -4px 0 0;
+		font-size: 12px;
+		font-weight: 500;
+	}
+	.node__status.is-success {
+		color: var(--color-success);
+	}
+	.node__status.is-muted {
+		color: var(--color-text-secondary);
+	}
+	.node__action-bar {
+		display: flex;
+		align-items: center;
+		gap: 2px;
+		padding: 4px;
+		border-radius: var(--radius-lg);
+		background: var(--color-bg-black);
+	}
+	.node__action-bar button {
+		color: rgba(255, 255, 255, 0.7);
+	}
+	.node__action-side {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		padding: 6px 8px;
+		font-size: 12px;
+		font-weight: 500;
+	}
+	.node__action-main {
+		flex: 1;
+		padding: 6px 0;
+		text-align: center;
+		border-radius: var(--radius-md);
+		background: var(--color-bg-black);
+		color: white;
+		font-size: 14px;
+		font-weight: 600;
+	}
+	.node__field {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+	.node__field-label {
+		margin: 0;
+		font-size: 12px;
+		font-weight: 500;
+		color: var(--color-text-secondary);
+	}
+	.node__select {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 8px 10px;
+		border: 1px solid var(--color-border-secondary);
+		border-radius: var(--radius-md);
+		font-size: 12px;
+	}
+	.node__textbox {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 8px;
+		border: 1px solid var(--color-border-secondary);
+		border-radius: var(--radius-md);
+	}
+	.node__textbox p {
+		margin: 0;
+		font-size: 12px;
+		line-height: 1.5;
+	}
+	.node__textbox p.is-muted {
+		color: var(--color-text-secondary);
+	}
+	.node__prompt-actions {
+		display: flex;
+		gap: 8px;
+	}
+	.node__pill {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		padding: 4px 8px;
+		border-radius: var(--radius-md);
+		background: var(--color-bg-gray-light);
+		font-size: 12px;
+		font-weight: 500;
+	}
+	.node__dropzone {
+		height: 64px;
+		border: 1px dashed var(--color-border-secondary);
+		border-radius: var(--radius-md);
+	}
+	.node__results {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.node__result-formats {
+		display: flex;
+		gap: 4px;
+	}
+	.node__result-format {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 24px;
+		height: 24px;
+		border-radius: var(--radius-md);
+		background: var(--color-bg-gray-light);
+		font-size: 12px;
+		font-weight: 500;
+		color: var(--color-text-secondary);
+	}
+	.node__link {
+		font-size: 12px;
+		font-weight: 500;
+		color: var(--color-violet);
+	}
+	.node__image-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.node__status-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--color-warning);
+	}
+
+	.connector {
+		position: absolute;
+		left: 998px;
+		top: 470px;
+		width: 73px;
+		height: 404px;
+		z-index: 4;
+		pointer-events: none;
+	}
+</style>
+</head>
+<body>
+<div class="page">
+	<!-- canvas -->
+	<div class="canvas"></div>
+
+	<!-- connector between the two nodes -->
+	<svg class="connector" viewBox="0 0 73 404" fill="none">
+		<path d="M1 1C1 200 72 200 72 403" stroke="#7d46ea" stroke-width="1.5" stroke-dasharray="4 4" />
+		<circle cx="1" cy="1" r="4" fill="#f97316" />
+		<circle cx="72" cy="403" r="4" fill="#f97316" />
+	</svg>
+
+	<!-- node: GPT Text -->
+	<div class="node node--gpt-text">
+		<div class="node__header">
+			<span class="node__title">GPT Text</span>
+			<button class="node__ask-ai" type="button">
+				<span class="icon" style="width:12px;height:12px">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+				</span>
+				Ask AI
+			</button>
+		</div>
+		<p class="node__status is-success">Successful 30 of 30</p>
+		<div class="node__action-bar">
+			<button class="node__action-side" type="button">
+				<span class="icon" style="width:14px;height:14px">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36L3 8"/><path d="M3 3v5h5"/></svg>
+				</span>
+				30
+			</button>
+			<button class="node__action-main" type="button">Re-generate</button>
+			<span class="node__action-side">
+				<span class="icon" style="width:14px;height:14px">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+				</span>
+				15
+			</span>
+		</div>
+		<div class="node__field">
+			<p class="node__field-label">Model Version</p>
+			<div class="node__select"><span>GPT 5 Mini</span><span class="icon" style="width:14px;height:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+		</div>
+		<div class="node__field">
+			<p class="node__field-label">Mode</p>
+			<div class="node__select"><span>···</span><span class="icon" style="width:14px;height:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+		</div>
+		<div class="node__field">
+			<p class="node__field-label">Prompt</p>
+			<div class="node__textbox">
+				<p>Generate something unusual!</p>
+				<div class="node__prompt-actions">
+					<button class="node__pill" type="button">🎲 Random</button>
+					<button class="node__pill" type="button">✨ Improve</button>
+				</div>
+			</div>
+		</div>
+		<div class="node__field">
+			<p class="node__field-label">Images (Optional)</p>
+			<div class="node__dropzone"></div>
+		</div>
+		<div class="node__field">
+			<p class="node__field-label">Answer</p>
+			<div class="node__textbox">
+				<p class="is-muted">
+					I'm not sure exactly what you mean by "randim" — do you want a randomly generated image, a prompt for an image
+					generator, or an actual image file (or ASCII art)? Tell me which and a couple preferences (style, subject, realism,
+					size, model/platform) — or pick one of the quick random prompts below and I'll expand it into a full prompt or
+					generation recipe. <button class="node__link" type="button" style="display:inline">Show more</button>
+				</p>
+				<div class="node__results">
+					<div class="node__result-formats">
+						<span class="node__result-format">T</span>
+						<span class="node__result-format">T</span>
+						<span class="node__result-format">T</span>
+						<span class="node__result-format">T</span>
+						<span class="node__result-format">T</span>
+					</div>
+					<button class="node__link" type="button">All results</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- node: Nano Banana -->
+	<div class="node node--nano-banana">
+		<div class="node__header">
+			<span class="node__title">Nano Banana</span>
+			<button class="node__ask-ai" type="button">
+				<span class="icon" style="width:12px;height:12px">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+				</span>
+				Ask AI
+			</button>
+		</div>
+		<p class="node__status is-muted">Click to start creating</p>
+		<div class="node__action-bar">
+			<button class="node__action-side" type="button">
+				<span class="icon" style="width:14px;height:14px">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36L3 8"/><path d="M3 3v5h5"/></svg>
+				</span>
+				1
+			</button>
+			<button class="node__action-main" type="button">Generate</button>
+			<span class="node__action-side">
+				<span class="icon" style="width:14px;height:14px">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+				</span>
+				65
+			</span>
+		</div>
+		<div class="node__image-row">
+			<p class="node__field-label" style="margin:0">Image</p>
+			<span class="node__status-dot"></span>
+		</div>
+		<div class="node__field">
+			<p class="node__field-label">Prompt</p>
+			<div class="node__textbox">
+				<p>center middle large empty space, aerial view of a yoghurts, milk, curd, on a soft pastel blue background</p>
+				<div class="node__prompt-actions">
+					<button class="node__pill" type="button">🎲 Random</button>
+					<button class="node__pill" type="button">✨ Improve</button>
+				</div>
+			</div>
+		</div>
+		<div class="node__field">
+			<p class="node__field-label">Start Images</p>
+			<div class="node__dropzone"></div>
+		</div>
+		<div class="node__field">
+			<p class="node__field-label">Version</p>
+			<div class="node__select"><span>v2.5</span><span class="icon" style="width:14px;height:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+		</div>
+		<div class="node__field">
+			<p class="node__field-label">Size (Aspect Ration)</p>
+			<div class="node__select"><span>Auto</span><span class="icon" style="width:14px;height:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+		</div>
+		<div class="node__field">
+			<p class="node__field-label">Quality</p>
+			<div class="node__select" style="opacity:.4"><span>···</span><span class="icon" style="width:14px;height:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></div>
+		</div>
+	</div>
+
+	<!-- header -->
+	<header class="header">
+		<div class="header__group">
+			<button class="icon-btn" type="button" aria-label="Menu">
+				<span class="icon" style="width:24px;height:24px">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
+				</span>
+			</button>
+			<strong style="font-size:14px;letter-spacing:-0.02em;padding-right:8px">Phygital+</strong>
+			<div class="project-name">
+				<div class="project-name__input">New project</div>
+				<button class="project-name__chevron" type="button" aria-label="Project menu">
+					<span class="icon" style="width:12px;height:12px">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+					</span>
+				</button>
+			</div>
+			<div style="display:flex;align-items:center;gap:12px">
+				<button class="btn-secondary" type="button">Save project</button>
+				<div class="autosave" aria-label="Autosaved">
+					<span class="icon" style="width:20px;height:20px">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><path d="m9 13 2 2 4-4"/></svg>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="header__group header__group--right">
+			<div style="display:flex;align-items:center;gap:4px">
+				<button class="icon-btn" type="button" aria-label="Help">
+					<span class="icon" style="width:20px;height:20px">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><path d="M12 17h.01"/></svg>
+					</span>
+				</button>
+				<button class="icon-btn" type="button" aria-label="Generations history">
+					<span class="icon" style="width:20px;height:20px">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+					</span>
+				</button>
+				<button class="icon-btn" type="button" aria-label="History">
+					<span class="icon" style="width:20px;height:20px">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+					</span>
+				</button>
+			</div>
+			<div style="display:flex;align-items:center;gap:8px">
+				<button class="btn-secondary" type="button">Share</button>
+				<div class="credits">
+					<span class="credits__amount">
+						<span class="icon" style="width:16px;height:16px">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+						</span>
+						500
+					</span>
+					<button class="credits__upgrade" type="button">
+						<span class="icon" style="width:16px;height:16px">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+						</span>
+						Upgrade
+					</button>
+				</div>
+				<div class="avatar">S</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- sidebar -->
+	<aside class="sidebar">
+		<button class="templates-banner" type="button">
+			<span class="templates-banner__label">🎨 Templates for you</span>
+			<span class="icon" style="width:16px;height:16px;color:#7d46ea">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+			</span>
+		</button>
+
+		<div class="tabs-row">
+			<div class="tabs">
+				<button class="tab is-active" type="button">AI Tools</button>
+				<button class="tab" type="button">Templates</button>
+			</div>
+			<button class="search-btn" type="button" aria-label="Search tools">
+				<span class="icon" style="width:20px;height:20px">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+				</span>
+			</button>
+		</div>
+
+		<div class="sections" id="sections"></div>
+	</aside>
+
+	<!-- additional tools -->
+	<div class="additional-tools">
+		<button class="additional-tools__btn" type="button" aria-label="Inpainting">
+			<span class="icon" style="width:16px;height:16px">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>
+			</span>
+		</button>
+		<button class="additional-tools__btn" type="button" aria-label="Sketching">
+			<span class="icon" style="width:16px;height:16px">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3a2.83 2.83 0 0 0-4 0L4 16v4h4L21 7a2.83 2.83 0 0 0 0-4Z"/><path d="m15 5 4 4"/></svg>
+			</span>
+		</button>
+		<button class="additional-tools__btn" type="button" aria-label="Compose">
+			<span class="icon" style="width:16px;height:16px">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+			</span>
+		</button>
+	</div>
+
+	<!-- panel tools -->
+	<div class="panel-tools">
+		<div class="panel-tools__group">
+			<button class="icon-btn" type="button" aria-label="Undo" style="width:32px;height:32px">
+				<span class="icon" style="width:16px;height:16px">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
+				</span>
+			</button>
+			<button class="icon-btn" type="button" aria-label="Redo" style="width:32px;height:32px">
+				<span class="icon" style="width:16px;height:16px">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"/></svg>
+				</span>
+			</button>
+		</div>
+		<button class="panel-tools__btn" type="button" aria-label="Align nodes">
+			<span class="icon" style="width:16px;height:16px">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+			</span>
+		</button>
+		<button class="panel-tools__btn" type="button" aria-label="Cut connections">
+			<span class="icon" style="width:16px;height:16px">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88"/><path d="M14.47 14.48 20 20"/><path d="M8.12 8.12 12 12"/></svg>
+			</span>
+		</button>
+		<button class="panel-tools__btn" type="button" aria-label="Fit to screen">
+			<span class="icon" style="width:16px;height:16px">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>
+			</span>
+		</button>
+		<div class="panel-tools__group">
+			<button class="icon-btn" type="button" aria-label="Zoom" style="width:32px;height:32px">
+				<span class="icon" style="width:16px;height:16px">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M11 8v6"/><path d="M8 11h6"/><path d="m21 21-4.3-4.3"/></svg>
+				</span>
+			</button>
+			<span class="zoom-level">120%</span>
+		</div>
+		<button class="ai-assistant" type="button">
+			<span class="icon" style="width:16px;height:16px">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+			</span>
+			<span>AI<br />assistant</span>
+		</button>
+		<button class="panel-tools__btn" type="button" aria-label="Help">
+			<span class="icon" style="width:16px;height:16px">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><path d="M12 17h.01"/></svg>
+			</span>
+		</button>
+	</div>
+</div>
+
+<script>
+	var sections = [
+		{
+			heading: "Train your model",
+			items: [{ name: "LORA Train Flux", badge: "500" }]
+		},
+		{
+			heading: "Generate image",
+			items: [
+				{ name: "Nano Banana", badge: "NEW" },
+				{ name: "FLUX3", badge: "NEW" },
+				{ name: "GPT Image" },
+				{ name: "Seedream" },
+				{ name: "Z Image" },
+				{ name: "WAN Image" },
+				{ name: "QWEN" },
+				{ name: "FLUX" },
+				{ name: "MidJourney" },
+				{ name: "Krea" },
+				{ name: "Imagen" },
+				{ name: "Ideogram" },
+				{ name: "Kling Omni Image" },
+				{ name: "Recraft Image" }
+			]
+		},
+		{
+			heading: "Generate videos",
+			items: [{ name: "Veo" }]
+		}
+	];
+
+	var root = document.getElementById("sections");
+	sections.forEach(function (section) {
+		var sectionEl = document.createElement("section");
+
+		var heading = document.createElement("h3");
+		heading.className = "section__heading";
+		heading.textContent = section.heading;
+		sectionEl.appendChild(heading);
+
+		section.items.forEach(function (item) {
+			var btn = document.createElement("button");
+			btn.type = "button";
+			btn.className = "tool-item";
+
+			var thumb = document.createElement("div");
+			thumb.className = "tool-item__thumb";
+			btn.appendChild(thumb);
+
+			var text = document.createElement("div");
+			text.className = "tool-item__text";
+
+			var row = document.createElement("div");
+			row.className = "tool-item__title-row";
+
+			var name = document.createElement("span");
+			name.className = "tool-item__name";
+			name.textContent = item.name;
+			row.appendChild(name);
+
+			if (item.badge) {
+				var badge = document.createElement("span");
+				badge.className = "tool-item__badge" + (item.badge === "NEW" ? " is-new" : "");
+				badge.textContent = item.badge;
+				row.appendChild(badge);
+			}
+
+			text.appendChild(row);
+			btn.appendChild(text);
+			sectionEl.appendChild(btn);
+		});
+
+		root.appendChild(sectionEl);
+	});
+</script>
+</body>
+</html>

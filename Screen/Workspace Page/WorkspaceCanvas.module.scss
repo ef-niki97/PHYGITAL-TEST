@@ -1,0 +1,5 @@
+.canvas {
+	background-color: theme("colors.background.gray-light", #f7f7f7);
+	background-image: radial-gradient(theme("colors.border.secondary", #e5e5e5) 1px, transparent 1px);
+	background-size: 16px 16px;
+}
